@@ -5,6 +5,7 @@ type Package = {
   price: string;
   tag: string;
   popular?: boolean;
+  badgeText?: string;
   features: boolean[];
 };
 
@@ -32,14 +33,15 @@ const softClothPackages: Package[] = [
   {
     name: "Better",
     price: "$19",
-    tag: "Most Popular",
-    popular: true,
+    tag: "Great Value",
     features: [true, true, true, true, true, true, true, true, true, false, false],
   },
   {
     name: "Best",
     price: "$23",
     tag: "Premium",
+    popular: true,
+    badgeText: "BEST",
     features: [true, true, true, true, true, true, true, true, true, true, false],
   },
   {
@@ -73,6 +75,7 @@ const touchlessPackages: Package[] = [
     price: "$19",
     tag: "Best Value",
     popular: true,
+    badgeText: "MOST POPULAR",
     features: [true, true, true, true, true, true, true, false],
   },
   {
@@ -111,7 +114,7 @@ const PricingTable = ({
           {pkg.popular && (
             <div className="flex justify-center mb-[-14px] relative z-10">
               <span className="bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
-                MOST POPULAR
+                {pkg.badgeText || "BEST"}
               </span>
             </div>
           )}
@@ -150,17 +153,22 @@ const PricingTable = ({
 
     {/* Desktop table */}
     <div className="hidden md:block overflow-visible pt-10">
-      <table className="w-full text-sm border-collapse">
+      <table className="w-full text-sm" style={{ borderCollapse: "separate", borderSpacing: 0 }}>
         <thead>
-          <tr className="border-b-2 border-border">
-            <th className="text-left px-5 py-6 font-semibold text-muted-foreground w-[240px] text-base">Features</th>
-            {packages.map((pkg) => (
-              <th key={pkg.name} className="px-5 text-center align-bottom">
+          <tr>
+            <th className="text-left px-5 py-6 font-semibold text-muted-foreground text-base border-b-2 border-border" style={{ width: "240px" }}>
+              Features
+            </th>
+            {packages.map((pkg, colIdx) => (
+              <th
+                key={pkg.name}
+                className={`px-5 text-center align-bottom border-b-2 border-border ${colIdx > 0 ? "border-l border-border/60" : "border-l border-border/60"}`}
+              >
                 <div className={`relative pb-6 pt-2 ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
                   {pkg.popular && (
                     <div className="flex justify-center mb-4">
                       <span className="bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
-                        MOST POPULAR
+                        {pkg.badgeText || "BEST"}
                       </span>
                     </div>
                   )}
@@ -175,10 +183,13 @@ const PricingTable = ({
         </thead>
         <tbody>
           {features.map((f, i) => (
-            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/40" : "bg-background"} border-b border-border/50`}>
-              <td className="px-5 py-5 font-medium text-foreground text-[15px]">{f}</td>
+            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/40" : "bg-background"}`}>
+              <td className="px-5 py-5 font-medium text-foreground text-[15px] border-b border-border/50">{f}</td>
               {packages.map((pkg) => (
-                <td key={pkg.name} className={`px-5 py-5 ${pkg.popular ? accentColor : ""}`}>
+                <td
+                  key={pkg.name}
+                  className={`px-5 py-5 border-l border-border/60 border-b border-border/50 ${pkg.popular ? accentColor : ""}`}
+                >
                   <FeatureIcon included={pkg.features[i]} />
                 </td>
               ))}
