@@ -102,14 +102,14 @@ const PricingTable = ({
   accentColor: string;
 }) => (
   <div>
-    <h3 className="text-2xl font-bold text-wash-navy mb-6 text-center">{title}</h3>
+    <h3 className="text-2xl font-bold text-wash-navy mb-8 text-center">{title}</h3>
 
     {/* Mobile cards */}
-    <div className="md:hidden space-y-4">
+    <div className="md:hidden space-y-5">
       {packages.map((pkg) => (
         <div
           key={pkg.name}
-          className={`rounded-2xl border p-5 ${
+          className={`rounded-2xl border p-6 ${
             pkg.popular
               ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
               : "border-border bg-card"
@@ -120,14 +120,14 @@ const PricingTable = ({
               MOST POPULAR
             </span>
           )}
-          <div className="flex items-baseline justify-between mb-4">
+          <div className="flex items-baseline justify-between mb-5">
             <div>
               <span className="text-lg font-bold text-foreground">{pkg.name}</span>
               <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
             </div>
             <span className="text-3xl font-black text-primary">{pkg.price}</span>
           </div>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {features.map((f, i) => (
               <li key={f} className="flex items-center gap-2 text-sm">
                 {pkg.features[i] ? (
@@ -149,28 +149,28 @@ const PricingTable = ({
     <div className="hidden md:block overflow-x-auto">
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="border-b border-border">
-            <th className="text-left p-4 font-semibold text-muted-foreground w-[220px]">Features</th>
+          <tr className="border-b-2 border-border">
+            <th className="text-left p-5 font-semibold text-muted-foreground w-[240px] text-base">Features</th>
             {packages.map((pkg) => (
-              <th key={pkg.name} className={`p-4 text-center relative ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
+              <th key={pkg.name} className={`p-5 text-center relative ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
                 {pkg.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap">
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1 rounded-full whitespace-nowrap shadow-md">
                     MOST POPULAR
                   </span>
                 )}
-                <div className="font-bold text-foreground text-base">{pkg.name}</div>
-                <div className="text-2xl font-black text-primary mt-1">{pkg.price}</div>
-                <div className="text-xs text-muted-foreground mt-0.5">{pkg.tag}</div>
+                <div className={`font-bold text-foreground text-lg ${pkg.popular ? "mt-2" : ""}`}>{pkg.name}</div>
+                <div className="text-3xl font-black text-primary mt-1">{pkg.price}</div>
+                <div className="text-xs text-muted-foreground mt-1">{pkg.tag}</div>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {features.map((f, i) => (
-            <tr key={f} className={`${i % 2 === 0 ? "bg-background" : ""} border-b border-border/50`}>
-              <td className="p-4 font-medium text-foreground">{f}</td>
+            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/30" : "bg-background"} border-b border-border/40`}>
+              <td className="p-5 font-medium text-foreground text-[15px]">{f}</td>
               {packages.map((pkg) => (
-                <td key={pkg.name} className={`p-4 ${pkg.popular ? accentColor : ""}`}>
+                <td key={pkg.name} className={`p-5 ${pkg.popular ? accentColor : ""}`}>
                   <FeatureIcon included={pkg.features[i]} />
                 </td>
               ))}
@@ -192,7 +192,7 @@ const PricingSection = () => (
         Compare features across all wash types and packages to find the perfect option for your car.
       </p>
 
-      <div className="mt-14 space-y-16">
+      <div className="mt-14 space-y-20">
         <PricingTable
           title="Soft Cloth Wash"
           packages={softClothPackages}
