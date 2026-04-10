@@ -11,6 +11,7 @@ import FAQSection from "@/components/FAQSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import MobileStickyNav from "@/components/MobileStickyNav";
+import ChatbotWidget from "@/components/ChatbotWidget";
 
 const Index = () => (
   <>
@@ -29,6 +30,7 @@ const Index = () => (
     </main>
     <Footer />
     <MobileStickyNav />
+    <ChatbotWidget />
   </>
 );
 

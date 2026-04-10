@@ -1,35 +1,186 @@
 import { Check, X } from "lucide-react";
 
-type Feature = {
+type Package = {
   name: string;
-  softBasic: boolean;
-  softBetter: boolean;
-  softBest: boolean;
-  touchBasic: boolean;
-  touchBetter: boolean;
-  touchBest: boolean;
+  price: string;
+  tag: string;
+  popular?: boolean;
+  features: boolean[];
 };
 
-const features: Feature[] = [
-  { name: "Undercarriage Blast", softBasic: true, softBetter: true, softBest: true, touchBasic: true, touchBetter: true, touchBest: true },
-  { name: "Presoak", softBasic: true, softBetter: true, softBest: true, touchBasic: true, touchBetter: true, touchBest: true },
-  { name: "Tri Foam Conditioner", softBasic: false, softBetter: true, softBest: true, touchBasic: false, touchBetter: true, touchBest: true },
-  { name: "Wheel Scrub", softBasic: true, softBetter: true, softBest: true, touchBasic: false, touchBetter: false, touchBest: false },
-  { name: "Soft Cloth Scrub + Shampoo", softBasic: true, softBetter: true, softBest: true, touchBasic: false, touchBetter: false, touchBest: false },
-  { name: "High Pressure Rinse", softBasic: true, softBetter: true, softBest: true, touchBasic: true, touchBetter: true, touchBest: true },
-  { name: "Body Shield Wax", softBasic: false, softBetter: true, softBest: true, touchBasic: false, touchBetter: true, touchBest: true },
-  { name: "Extreme Shine Foam Arch", softBasic: false, softBetter: false, softBest: true, touchBasic: false, touchBetter: false, touchBest: true },
-  { name: "Polish with Foam Cloth", softBasic: false, softBetter: false, softBest: true, touchBasic: false, touchBetter: false, touchBest: false },
-  { name: "Spot Free Rinse", softBasic: true, softBetter: true, softBest: true, touchBasic: true, touchBetter: true, touchBest: true },
-  { name: "Dryer", softBasic: true, softBetter: true, softBest: true, touchBasic: true, touchBetter: true, touchBest: true },
+const softClothFeatures = [
+  "Undercarriage Blast",
+  "Presoak",
+  "Wheel Scrub",
+  "Soft Cloth Scrub + Shampoo",
+  "High Pressure Rinse",
+  "Spot Free Rinse",
+  "Dryer",
+  "Tri Foam Conditioner",
+  "Body Shield Wax",
+  "Extreme Shine Foam Arch",
+  "Polish with Foam Cloth",
+];
+
+const softClothPackages: Package[] = [
+  {
+    name: "Basic",
+    price: "$16",
+    tag: "Quick Clean",
+    features: [true, true, true, true, true, true, true, false, false, false, false],
+  },
+  {
+    name: "Better",
+    price: "$19",
+    tag: "Most Popular",
+    popular: true,
+    features: [true, true, true, true, true, true, true, true, true, false, false],
+  },
+  {
+    name: "Best",
+    price: "$23",
+    tag: "Premium",
+    features: [true, true, true, true, true, true, true, true, true, true, false],
+  },
+  {
+    name: "Best + Polish",
+    price: "$26",
+    tag: "Ultimate Finish",
+    features: [true, true, true, true, true, true, true, true, true, true, true],
+  },
+];
+
+const touchlessFeatures = [
+  "Undercarriage Blast",
+  "Presoak",
+  "High Pressure Rinse",
+  "Spot Free Rinse",
+  "Dryer",
+  "Tri Foam Conditioner",
+  "Body Shield Wax",
+  "Extreme Shine Foam Arch",
+];
+
+const touchlessPackages: Package[] = [
+  {
+    name: "Basic",
+    price: "$16",
+    tag: "Quick Clean",
+    features: [true, true, true, true, true, false, false, false],
+  },
+  {
+    name: "Better",
+    price: "$19",
+    tag: "Best Value",
+    popular: true,
+    features: [true, true, true, true, true, true, true, false],
+  },
+  {
+    name: "Best",
+    price: "$23",
+    tag: "Premium Touchless",
+    features: [true, true, true, true, true, true, true, true],
+  },
 ];
 
 const FeatureIcon = ({ included }: { included: boolean }) =>
   included ? (
-    <Check className="w-4 h-4 text-wash-green mx-auto" />
+    <Check className="w-5 h-5 text-wash-green mx-auto" />
   ) : (
-    <X className="w-4 h-4 text-muted-foreground/30 mx-auto" />
+    <X className="w-5 h-5 text-muted-foreground/25 mx-auto" />
   );
+
+const PricingTable = ({
+  title,
+  packages,
+  features,
+  accentColor,
+}: {
+  title: string;
+  packages: Package[];
+  features: string[];
+  accentColor: string;
+}) => (
+  <div>
+    <h3 className="text-2xl font-bold text-wash-navy mb-6 text-center">{title}</h3>
+
+    {/* Mobile cards */}
+    <div className="md:hidden space-y-4">
+      {packages.map((pkg) => (
+        <div
+          key={pkg.name}
+          className={`rounded-2xl border p-5 ${
+            pkg.popular
+              ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
+              : "border-border bg-card"
+          }`}
+        >
+          {pkg.popular && (
+            <span className="inline-block bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full mb-3">
+              MOST POPULAR
+            </span>
+          )}
+          <div className="flex items-baseline justify-between mb-4">
+            <div>
+              <span className="text-lg font-bold text-foreground">{pkg.name}</span>
+              <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
+            </div>
+            <span className="text-3xl font-black text-primary">{pkg.price}</span>
+          </div>
+          <ul className="space-y-2">
+            {features.map((f, i) => (
+              <li key={f} className="flex items-center gap-2 text-sm">
+                {pkg.features[i] ? (
+                  <Check className="w-4 h-4 text-wash-green shrink-0" />
+                ) : (
+                  <X className="w-4 h-4 text-muted-foreground/25 shrink-0" />
+                )}
+                <span className={pkg.features[i] ? "text-foreground" : "text-muted-foreground/50"}>
+                  {f}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    {/* Desktop table */}
+    <div className="hidden md:block overflow-x-auto">
+      <table className="w-full text-sm border-collapse">
+        <thead>
+          <tr className="border-b border-border">
+            <th className="text-left p-4 font-semibold text-muted-foreground w-[220px]">Features</th>
+            {packages.map((pkg) => (
+              <th key={pkg.name} className={`p-4 text-center relative ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
+                {pkg.popular && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-3 py-0.5 rounded-full whitespace-nowrap">
+                    MOST POPULAR
+                  </span>
+                )}
+                <div className="font-bold text-foreground text-base">{pkg.name}</div>
+                <div className="text-2xl font-black text-primary mt-1">{pkg.price}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{pkg.tag}</div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {features.map((f, i) => (
+            <tr key={f} className={`${i % 2 === 0 ? "bg-background" : ""} border-b border-border/50`}>
+              <td className="p-4 font-medium text-foreground">{f}</td>
+              {packages.map((pkg) => (
+                <td key={pkg.name} className={`p-4 ${pkg.popular ? accentColor : ""}`}>
+                  <FeatureIcon included={pkg.features[i]} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
 
 const PricingSection = () => (
   <section className="section-padding bg-card" id="pricing">
@@ -41,82 +192,22 @@ const PricingSection = () => (
         Compare features across all wash types and packages to find the perfect option for your car.
       </p>
 
-      {/* Mobile cards */}
-      <div className="mt-10 md:hidden space-y-6">
-        <PricingCards title="Soft Cloth" packages={softClothPkgs} />
-        <PricingCards title="Touchless" packages={touchlessPkgs} />
+      <div className="mt-14 space-y-16">
+        <PricingTable
+          title="Soft Cloth Wash"
+          packages={softClothPackages}
+          features={softClothFeatures}
+          accentColor="bg-primary/5"
+        />
+        <PricingTable
+          title="Touchless Wash"
+          packages={touchlessPackages}
+          features={touchlessFeatures}
+          accentColor="bg-wash-blue-light"
+        />
       </div>
 
-      {/* Desktop table */}
-      <div className="mt-10 hidden md:block overflow-x-auto">
-        <table className="w-full text-sm border-collapse">
-          <thead>
-            <tr>
-              <th className="text-left p-3 font-semibold text-muted-foreground w-[200px]">Features</th>
-              <th colSpan={3} className="text-center p-2 font-bold text-wash-navy border-b-2 border-primary/30">
-                Soft Cloth
-              </th>
-              <th colSpan={3} className="text-center p-2 font-bold text-wash-navy border-b-2 border-muted-foreground/20">
-                Touchless
-              </th>
-            </tr>
-            <tr className="border-b border-border">
-              <td className="p-3"></td>
-              <td className="p-3 text-center">
-                <div className="font-semibold text-foreground">Basic</div>
-                <div className="text-xl font-bold text-primary">$16</div>
-                <div className="text-xs text-muted-foreground">Quick Clean</div>
-              </td>
-              <td className="p-3 text-center bg-primary/5 rounded-t-lg relative">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  MOST POPULAR
-                </span>
-                <div className="font-semibold text-foreground">Better</div>
-                <div className="text-xl font-bold text-primary">$19</div>
-                <div className="text-xs text-muted-foreground">⭐ Most Popular</div>
-              </td>
-              <td className="p-3 text-center">
-                <div className="font-semibold text-foreground">Best + Polish</div>
-                <div className="text-xl font-bold text-primary">$26</div>
-                <div className="text-xs text-muted-foreground">Premium Finish</div>
-              </td>
-              <td className="p-3 text-center">
-                <div className="font-semibold text-foreground">Basic</div>
-                <div className="text-xl font-bold text-primary">$16</div>
-                <div className="text-xs text-muted-foreground">Quick Clean</div>
-              </td>
-              <td className="p-3 text-center bg-wash-blue-light/50 rounded-t-lg relative">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-wash-orange text-primary-foreground text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  BEST VALUE
-                </span>
-                <div className="font-semibold text-foreground">Better</div>
-                <div className="text-xl font-bold text-primary">$19</div>
-                <div className="text-xs text-muted-foreground">Best Value</div>
-              </td>
-              <td className="p-3 text-center">
-                <div className="font-semibold text-foreground">Best</div>
-                <div className="text-xl font-bold text-primary">$23</div>
-                <div className="text-xs text-muted-foreground">Premium Touchless</div>
-              </td>
-            </tr>
-          </thead>
-          <tbody>
-            {features.map((f, i) => (
-              <tr key={f.name} className={i % 2 === 0 ? "bg-background" : ""}>
-                <td className="p-3 font-medium text-foreground">{f.name}</td>
-                <td className="p-3"><FeatureIcon included={f.softBasic} /></td>
-                <td className="p-3 bg-primary/5"><FeatureIcon included={f.softBetter} /></td>
-                <td className="p-3"><FeatureIcon included={f.softBest} /></td>
-                <td className="p-3"><FeatureIcon included={f.touchBasic} /></td>
-                <td className="p-3 bg-wash-blue-light/50"><FeatureIcon included={f.touchBetter} /></td>
-                <td className="p-3"><FeatureIcon included={f.touchBest} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <p className="mt-8 text-center text-sm text-muted-foreground">
+      <p className="mt-10 text-center text-sm text-muted-foreground">
         Services vary across locations.{" "}
         <a href="#locations" className="text-primary font-medium hover:underline">
           Find a wash near you
@@ -125,48 +216,6 @@ const PricingSection = () => (
       </p>
     </div>
   </section>
-);
-
-const softClothPkgs = [
-  { name: "Basic", price: "$16", tag: "Quick Clean", highlight: false },
-  { name: "Better", price: "$19", tag: "⭐ Most Popular", highlight: true },
-  { name: "Best + Polish", price: "$26", tag: "Premium Finish", highlight: false },
-];
-
-const touchlessPkgs = [
-  { name: "Basic", price: "$16", tag: "Quick Clean", highlight: false },
-  { name: "Better", price: "$19", tag: "Best Value", highlight: true },
-  { name: "Best", price: "$23", tag: "Premium Touchless", highlight: false },
-];
-
-const PricingCards = ({
-  title,
-  packages,
-}: {
-  title: string;
-  packages: { name: string; price: string; tag: string; highlight: boolean }[];
-}) => (
-  <div>
-    <h3 className="text-lg font-bold text-wash-navy mb-3">{title}</h3>
-    <div className="space-y-3">
-      {packages.map((pkg) => (
-        <div
-          key={pkg.name}
-          className={`flex items-center justify-between p-4 rounded-xl border ${
-            pkg.highlight
-              ? "border-primary bg-primary/5 shadow-md"
-              : "border-border bg-card"
-          }`}
-        >
-          <div>
-            <span className="font-semibold text-foreground">{pkg.name}</span>
-            <span className="ml-2 text-xs text-muted-foreground">{pkg.tag}</span>
-          </div>
-          <span className="text-xl font-bold text-primary">{pkg.price}</span>
-        </div>
-      ))}
-    </div>
-  </div>
 );
 
 export default PricingSection;

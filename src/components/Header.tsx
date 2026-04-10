@@ -14,7 +14,7 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-wash-navy shadow-lg">
       <div className="container-tight flex items-center justify-between h-16 md:h-20 px-4">
         <a href="#" className="flex items-center gap-2">
           <img
@@ -29,7 +29,7 @@ const Header = () => {
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+              className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
               {link.label}
             </a>
@@ -39,7 +39,7 @@ const Header = () => {
         <div className="hidden lg:flex items-center gap-4">
           <a
             href="tel:604-507-0829"
-            className="flex items-center gap-2 text-sm font-semibold text-primary"
+            className="flex items-center gap-2 text-sm font-semibold text-primary-foreground/90"
           >
             <Phone className="w-4 h-4" />
             604-507-0829
@@ -53,7 +53,7 @@ const Header = () => {
         </div>
 
         <button
-          className="lg:hidden p-2"
+          className="lg:hidden p-2 text-primary-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -62,13 +62,13 @@ const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="lg:hidden bg-card border-t border-border px-4 pb-6">
+        <div className="lg:hidden bg-wash-navy border-t border-primary-foreground/10 px-4 pb-6">
           <nav className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-base font-medium text-foreground/80 hover:text-primary"
+                className="text-base font-medium text-primary-foreground/80 hover:text-primary-foreground"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -76,7 +76,7 @@ const Header = () => {
             ))}
             <a
               href="tel:604-507-0829"
-              className="flex items-center gap-2 text-base font-semibold text-primary"
+              className="flex items-center gap-2 text-base font-semibold text-primary-foreground"
             >
               <Phone className="w-4 h-4" />
               604-507-0829

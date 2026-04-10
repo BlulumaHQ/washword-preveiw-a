@@ -1,16 +1,16 @@
 import { MapPin, ArrowRight } from "lucide-react";
+import heroImg from "@/assets/hero.png";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center bg-wash-navy overflow-hidden">
-      {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="https://washworld.ca/wp-content/uploads/2024/06/modern_car_008_6813-1.png"
-          alt="Professional car wash"
-          className="w-full h-full object-cover opacity-30"
+          src={heroImg}
+          alt="Washworld professional car wash"
+          className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-wash-navy/95 via-wash-navy/80 to-wash-navy/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-wash-navy/95 via-wash-navy/70 to-transparent" />
       </div>
 
       <div className="relative container-tight px-4 pt-20 pb-16 md:pt-32 md:pb-24">
@@ -25,7 +25,6 @@ const HeroSection = () => {
             seconds, and get back on the road with a cleaner, shinier car.
           </p>
 
-          {/* Trust bullets */}
           <div className="mt-8 flex flex-wrap gap-4">
             {[
               "5 Locations Across BC",
@@ -42,7 +41,6 @@ const HeroSection = () => {
             ))}
           </div>
 
-          {/* CTAs */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
               href="#locations"

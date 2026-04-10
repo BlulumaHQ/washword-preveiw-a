@@ -1,4 +1,5 @@
-import { Droplets, Wind } from "lucide-react";
+import softClothIcon from "@/assets/soft_cloth.jpg";
+import touchlessIcon from "@/assets/touchless.jpg";
 
 const WashTypeSection = () => (
   <section className="section-padding bg-wash-blue-light" id="wash-types">
@@ -8,14 +9,13 @@ const WashTypeSection = () => (
       </h2>
 
       <div className="mt-12 grid md:grid-cols-2 gap-8">
-        {/* Soft Cloth */}
         <div className="bg-card rounded-2xl p-8 border border-border shadow-sm">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-            <Droplets className="w-6 h-6 text-wash-blue" />
+          <div className="w-20 h-20 rounded-xl bg-wash-blue-light flex items-center justify-center mb-6">
+            <img src={softClothIcon} alt="Soft Cloth Wash" className="w-16 h-16 object-contain" />
           </div>
           <h3 className="text-xl font-bold text-foreground">Soft Cloth Wash</h3>
           <p className="mt-3 text-muted-foreground leading-relaxed">
-            A more thorough, hands-on clean using soft cloth technology — ideal
+            A more thorough clean using soft cloth technology — ideal
             for removing heavier dirt and achieving a polished finish.
           </p>
           <div className="mt-4 px-4 py-3 rounded-lg bg-wash-blue-light border border-primary/20">
@@ -25,20 +25,36 @@ const WashTypeSection = () => (
           </div>
         </div>
 
-        {/* Touchless */}
         <div className="bg-card rounded-2xl p-8 border border-border shadow-sm">
-          <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-            <Wind className="w-6 h-6 text-wash-blue" />
+          <div className="w-20 h-20 rounded-xl bg-wash-blue-light flex items-center justify-center mb-6">
+            <img src={touchlessIcon} alt="Touchless Wash" className="w-16 h-16 object-contain" />
           </div>
           <h3 className="text-xl font-bold text-foreground">Touchless Wash</h3>
           <p className="mt-3 text-muted-foreground leading-relaxed">
             A fast, no-contact clean using high-pressure water — best for light
-            dirt, quick washes, and maintaining your vehicle between deeper
-            cleans.
+            dirt and quick maintenance washes.
           </p>
           <div className="mt-4 px-4 py-3 rounded-lg bg-wash-blue-light border border-primary/20">
             <p className="text-sm font-medium text-wash-navy">
               👉 Best for quick, convenient maintenance washes
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-8 bg-card rounded-2xl p-6 border border-border shadow-sm max-w-2xl mx-auto">
+        <h4 className="font-bold text-foreground mb-3 text-center">Not sure which to choose?</h4>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-wash-blue-light">
+            <span className="text-lg">🚗</span>
+            <p className="text-sm text-wash-navy font-medium">
+              Heavily dirty vehicle → choose <strong>Soft Cloth</strong>
+            </p>
+          </div>
+          <div className="flex items-start gap-3 p-3 rounded-lg bg-wash-blue-light">
+            <span className="text-lg">⚡</span>
+            <p className="text-sm text-wash-navy font-medium">
+              Quick clean needed → choose <strong>Touchless</strong>
             </p>
           </div>
         </div>
