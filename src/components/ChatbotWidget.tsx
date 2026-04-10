@@ -11,7 +11,7 @@ const ChatbotWidget = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-20 lg:bottom-6 right-4 z-40">
+    <div className="fixed bottom-24 lg:bottom-8 right-5 z-40">
       {open && (
         <div className="mb-3 w-80 bg-card rounded-2xl shadow-2xl border border-border overflow-hidden animate-in slide-in-from-bottom-4">
           <div className="bg-wash-navy p-4 flex items-center justify-between">
