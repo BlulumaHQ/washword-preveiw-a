@@ -1,0 +1,91 @@
+import { useState } from "react";
+import { Menu, X, Phone } from "lucide-react";
+
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "Services", href: "#services" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Locations", href: "#locations" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const Header = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border shadow-sm">
+      <div className="container-tight flex items-center justify-between h-16 md:h-20 px-4">
+        <a href="#" className="flex items-center gap-2">
+          <img
+            src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
+            alt="Washworld Logo"
+            className="h-10 md:h-12 w-auto"
+          />
+        </a>
+
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden lg:flex items-center gap-4">
+          <a
+            href="tel:604-507-0829"
+            className="flex items-center gap-2 text-sm font-semibold text-primary"
+          >
+            <Phone className="w-4 h-4" />
+            604-507-0829
+          </a>
+          <a
+            href="#locations"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-wash-blue-dark transition-colors"
+          >
+            Find a Location
+          </a>
+        </div>
+
+        <button
+          className="lg:hidden p-2"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      {mobileOpen && (
+        <div className="lg:hidden bg-card border-t border-border px-4 pb-6">
+          <nav className="flex flex-col gap-4 pt-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-base font-medium text-foreground/80 hover:text-primary"
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="tel:604-507-0829"
+              className="flex items-center gap-2 text-base font-semibold text-primary"
+            >
+              <Phone className="w-4 h-4" />
+              604-507-0829
+            </a>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
+
+export default Header;
