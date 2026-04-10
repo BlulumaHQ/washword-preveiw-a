@@ -5,9 +5,9 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Bundles", href: "/bundle-promotions" },
   { label: "Locations", href: "/#locations" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Wash Packages", href: "/bundle-promotions" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-wash-navy shadow-lg">
       <div className="container-tight flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2">
+        <a href="#" className="flex items-center gap-2 shrink-0">
           <img
             src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
             alt="Washworld Logo"
@@ -25,19 +25,19 @@ const Header = () => {
           />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 mx-auto">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors whitespace-nowrap"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-5 shrink-0">
           <a
             href="tel:604-507-0829"
             className="flex items-center gap-2 text-sm font-semibold text-primary-foreground/90"
