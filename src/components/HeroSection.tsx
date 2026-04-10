@@ -13,7 +13,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-wash-navy/95 via-wash-navy/75 to-wash-navy/20" />
       </div>
 
-      <div className="relative container-tight px-4 pt-20 pb-16 md:pt-32 md:pb-24">
+      <div className="relative w-full max-w-6xl mx-auto px-4 md:px-8 pt-20 pb-16 md:pt-32 md:pb-24">
         <div className="max-w-2xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary-foreground leading-tight tracking-tight">
             Clean Car. Fast Stop.{" "}
