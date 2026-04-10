@@ -15,7 +15,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-wash-navy shadow-lg">
-      <div className="container-tight flex items-center justify-between h-16 md:h-20 px-4">
+      <div className="container-tight flex items-center justify-between h-16 md:h-20">
         <a href="#" className="flex items-center gap-2">
           <img
             src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
