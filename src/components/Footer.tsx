@@ -7,7 +7,7 @@ const Footer = () => (
           <img
             src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
             alt="Washworld"
-            className="h-10 w-auto mb-4"
+            className="h-8 w-auto object-contain mb-4"
           />
           <p className="text-sm leading-relaxed">
             Washworld is your 24/7 destination for premium car care — offering spotless, satisfying car wash experiences across BC.
@@ -21,11 +21,12 @@ const Footer = () => (
         <div>
           <h4 className="font-semibold text-primary-foreground mb-4">Menu</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><a href="#" className="hover:text-primary-foreground transition-colors">Home</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground transition-colors">Services</a></li>
-            <li><a href="#pricing" className="hover:text-primary-foreground transition-colors">Pricing</a></li>
-            <li><a href="#faq" className="hover:text-primary-foreground transition-colors">FAQ</a></li>
-            <li><a href="#contact" className="hover:text-primary-foreground transition-colors">Contact</a></li>
+            <li><a href="/" className="hover:text-primary-foreground transition-colors">Home</a></li>
+            <li><a href="/#services" className="hover:text-primary-foreground transition-colors">Services</a></li>
+            <li><a href="/#pricing" className="hover:text-primary-foreground transition-colors">Pricing</a></li>
+            <li><a href="/bundle-promotions" className="hover:text-primary-foreground transition-colors">Bundle Promotions</a></li>
+            <li><a href="/#faq" className="hover:text-primary-foreground transition-colors">FAQ</a></li>
+            <li><a href="/#contact" className="hover:text-primary-foreground transition-colors">Contact</a></li>
           </ul>
         </div>
 
