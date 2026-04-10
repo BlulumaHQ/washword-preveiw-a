@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Menu, X, Phone } from "lucide-react";
 
-const navLinks = [
+const mobileMenuLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Bundles", href: "/bundle-promotions" },
   { label: "Locations", href: "/#locations" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Bundle & Promo", href: "/bundle-promotions" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -17,7 +17,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-wash-navy shadow-lg">
       <div className="container-tight flex items-center justify-between h-16 md:h-20">
-        <a href="#" className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2">
           <img
             src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
             alt="Washworld Logo"
@@ -25,19 +25,7 @@ const Header = () => {
           />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm font-medium text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-5">
           <a
             href="tel:604-507-0829"
             className="flex items-center gap-2 text-sm font-semibold text-primary-foreground/90"
@@ -65,7 +53,7 @@ const Header = () => {
       {mobileOpen && (
         <div className="lg:hidden bg-wash-navy border-t border-primary-foreground/10 px-4 pb-6">
           <nav className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
+            {mobileMenuLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
