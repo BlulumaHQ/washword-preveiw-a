@@ -7,7 +7,7 @@ const Footer = () => (
           <img
             src="https://washworld.ca/wp-content/uploads/2024/06/washworldlogo-1.png"
             alt="Washworld"
-            className="h-10 w-auto mb-4"
+            className="h-8 w-auto object-contain mb-4"
           />
           <p className="text-sm leading-relaxed">
             Washworld is your 24/7 destination for premium car care — offering spotless, satisfying car wash experiences across BC.
