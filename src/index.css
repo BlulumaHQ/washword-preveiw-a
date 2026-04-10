@@ -76,7 +76,7 @@
     @apply py-16 md:py-24 px-4 md:px-8;
   }
   .container-tight {
-    @apply max-w-6xl mx-auto;
+    @apply max-w-6xl mx-auto px-4 md:px-8;
   }
   .text-wash-blue {
     color: hsl(var(--wash-blue));
