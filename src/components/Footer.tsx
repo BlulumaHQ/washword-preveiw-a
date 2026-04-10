@@ -21,11 +21,12 @@ const Footer = () => (
         <div>
           <h4 className="font-semibold text-primary-foreground mb-4">Menu</h4>
           <ul className="space-y-2.5 text-sm">
-            <li><a href="#" className="hover:text-primary-foreground transition-colors">Home</a></li>
-            <li><a href="#services" className="hover:text-primary-foreground transition-colors">Services</a></li>
-            <li><a href="#pricing" className="hover:text-primary-foreground transition-colors">Pricing</a></li>
-            <li><a href="#faq" className="hover:text-primary-foreground transition-colors">FAQ</a></li>
-            <li><a href="#contact" className="hover:text-primary-foreground transition-colors">Contact</a></li>
+            <li><a href="/" className="hover:text-primary-foreground transition-colors">Home</a></li>
+            <li><a href="/#services" className="hover:text-primary-foreground transition-colors">Services</a></li>
+            <li><a href="/#pricing" className="hover:text-primary-foreground transition-colors">Pricing</a></li>
+            <li><a href="/bundle-promotions" className="hover:text-primary-foreground transition-colors">Bundle Promotions</a></li>
+            <li><a href="/#faq" className="hover:text-primary-foreground transition-colors">FAQ</a></li>
+            <li><a href="/#contact" className="hover:text-primary-foreground transition-colors">Contact</a></li>
           </ul>
         </div>
 
