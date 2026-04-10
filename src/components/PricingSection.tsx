@@ -102,77 +102,83 @@ const PricingTable = ({
   accentColor: string;
 }) => (
   <div>
-    <h3 className="text-2xl font-bold text-wash-navy mb-8 text-center">{title}</h3>
+    <h3 className="text-2xl font-bold text-wash-navy mb-10 text-center">{title}</h3>
 
     {/* Mobile cards */}
-    <div className="md:hidden space-y-5">
+    <div className="md:hidden space-y-6">
       {packages.map((pkg) => (
-        <div
-          key={pkg.name}
-          className={`rounded-2xl border p-6 ${
-            pkg.popular
-              ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
-              : "border-border bg-card"
-          }`}
-        >
+        <div key={pkg.name} className="relative">
           {pkg.popular && (
-            <span className="inline-block bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full mb-3">
-              MOST POPULAR
-            </span>
-          )}
-          <div className="flex items-baseline justify-between mb-5">
-            <div>
-              <span className="text-lg font-bold text-foreground">{pkg.name}</span>
-              <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
+            <div className="flex justify-center mb-[-14px] relative z-10">
+              <span className="bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
+                MOST POPULAR
+              </span>
             </div>
-            <span className="text-3xl font-black text-primary">{pkg.price}</span>
+          )}
+          <div
+            className={`rounded-2xl border p-6 ${pkg.popular ? "pt-8" : ""} ${
+              pkg.popular
+                ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
+                : "border-border bg-card"
+            }`}
+          >
+            <div className="flex items-baseline justify-between mb-5">
+              <div>
+                <span className="text-lg font-bold text-foreground">{pkg.name}</span>
+                <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
+              </div>
+              <span className="text-3xl font-black text-primary">{pkg.price}</span>
+            </div>
+            <ul className="space-y-3">
+              {features.map((f, i) => (
+                <li key={f} className="flex items-center gap-2 text-sm">
+                  {pkg.features[i] ? (
+                    <Check className="w-4 h-4 text-wash-green shrink-0" />
+                  ) : (
+                    <X className="w-4 h-4 text-muted-foreground/25 shrink-0" />
+                  )}
+                  <span className={pkg.features[i] ? "text-foreground" : "text-muted-foreground/50"}>
+                    {f}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-3">
-            {features.map((f, i) => (
-              <li key={f} className="flex items-center gap-2 text-sm">
-                {pkg.features[i] ? (
-                  <Check className="w-4 h-4 text-wash-green shrink-0" />
-                ) : (
-                  <X className="w-4 h-4 text-muted-foreground/25 shrink-0" />
-                )}
-                <span className={pkg.features[i] ? "text-foreground" : "text-muted-foreground/50"}>
-                  {f}
-                </span>
-              </li>
-            ))}
-          </ul>
         </div>
       ))}
     </div>
 
     {/* Desktop table */}
-    <div className="hidden md:block overflow-x-auto pt-8">
+    <div className="hidden md:block overflow-visible pt-10">
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="border-b-2 border-border">
             <th className="text-left px-5 py-6 font-semibold text-muted-foreground w-[240px] text-base">Features</th>
             {packages.map((pkg) => (
-              <th key={pkg.name} className={`px-5 py-6 text-center ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
-                {pkg.popular && (
-                  <div className="flex justify-center mb-3">
-                    <span className="bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
-                      MOST POPULAR
-                    </span>
-                  </div>
-                )}
-                <div className="font-bold text-foreground text-lg">{pkg.name}</div>
-                <div className="text-3xl font-black text-primary mt-1">{pkg.price}</div>
-                <div className="text-xs text-muted-foreground mt-1">{pkg.tag}</div>
+              <th key={pkg.name} className="px-5 text-center align-bottom">
+                <div className={`relative pb-6 pt-2 ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
+                  {pkg.popular && (
+                    <div className="flex justify-center mb-4">
+                      <span className="bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                        MOST POPULAR
+                      </span>
+                    </div>
+                  )}
+                  {!pkg.popular && <div className="h-8" />}
+                  <div className="font-bold text-foreground text-lg">{pkg.name}</div>
+                  <div className="text-3xl font-black text-primary mt-1">{pkg.price}</div>
+                  <div className="text-xs text-muted-foreground mt-1">{pkg.tag}</div>
+                </div>
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {features.map((f, i) => (
-            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/30" : "bg-background"} border-b border-border/40`}>
-              <td className="px-5 py-4 font-medium text-foreground text-[15px]">{f}</td>
+            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/40" : "bg-background"} border-b border-border/50`}>
+              <td className="px-5 py-5 font-medium text-foreground text-[15px]">{f}</td>
               {packages.map((pkg) => (
-                <td key={pkg.name} className={`px-5 py-4 ${pkg.popular ? accentColor : ""}`}>
+                <td key={pkg.name} className={`px-5 py-5 ${pkg.popular ? accentColor : ""}`}>
                   <FeatureIcon included={pkg.features[i]} />
                 </td>
               ))}
@@ -194,7 +200,7 @@ const PricingSection = () => (
         Compare features across all wash types and packages to find the perfect option for your car.
       </p>
 
-      <div className="mt-16 space-y-20">
+      <div className="mt-20 space-y-24">
         <PricingTable
           title="Soft Cloth Wash"
           packages={softClothPackages}
@@ -209,7 +215,7 @@ const PricingSection = () => (
         />
       </div>
 
-      <p className="mt-10 text-center text-sm text-muted-foreground">
+      <p className="mt-12 text-center text-sm text-muted-foreground">
         Services vary across locations.{" "}
         <a href="#locations" className="text-primary font-medium hover:underline">
           Find a wash near you
