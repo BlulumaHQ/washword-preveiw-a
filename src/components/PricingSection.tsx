@@ -5,6 +5,7 @@ type Package = {
   price: string;
   tag: string;
   popular?: boolean;
+  badgeText?: string;
   features: boolean[];
 };
 
@@ -32,14 +33,15 @@ const softClothPackages: Package[] = [
   {
     name: "Better",
     price: "$19",
-    tag: "Most Popular",
-    popular: true,
+    tag: "Great Value",
     features: [true, true, true, true, true, true, true, true, true, false, false],
   },
   {
     name: "Best",
     price: "$23",
     tag: "Premium",
+    popular: true,
+    badgeText: "BEST",
     features: [true, true, true, true, true, true, true, true, true, true, false],
   },
   {
@@ -73,6 +75,7 @@ const touchlessPackages: Package[] = [
     price: "$19",
     tag: "Best Value",
     popular: true,
+    badgeText: "MOST POPULAR",
     features: [true, true, true, true, true, true, true, false],
   },
   {
@@ -100,95 +103,119 @@ const PricingTable = ({
   packages: Package[];
   features: string[];
   accentColor: string;
-}) => (
-  <div>
-    <h3 className="text-2xl font-bold text-wash-navy mb-10 text-center">{title}</h3>
+}) => {
+  const colCount = packages.length;
 
-    {/* Mobile cards */}
-    <div className="md:hidden space-y-6">
-      {packages.map((pkg) => (
-        <div key={pkg.name} className="relative">
-          {pkg.popular && (
-            <div className="flex justify-center mb-[-14px] relative z-10">
-              <span className="bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
-                MOST POPULAR
-              </span>
-            </div>
-          )}
-          <div
-            className={`rounded-2xl border p-6 ${pkg.popular ? "pt-8" : ""} ${
-              pkg.popular
-                ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
-                : "border-border bg-card"
-            }`}
-          >
-            <div className="flex items-baseline justify-between mb-5">
-              <div>
-                <span className="text-lg font-bold text-foreground">{pkg.name}</span>
-                <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
+  return (
+    <div>
+      <h3 className="text-2xl font-bold text-wash-navy mb-10 text-center">{title}</h3>
+
+      {/* Mobile cards */}
+      <div className="md:hidden space-y-6">
+        {packages.map((pkg) => (
+          <div key={pkg.name} className="relative">
+            {pkg.popular && (
+              <div className="flex justify-center mb-[-14px] relative z-10">
+                <span className="bg-primary text-primary-foreground text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
+                  {pkg.badgeText || "BEST"}
+                </span>
               </div>
-              <span className="text-3xl font-black text-primary">{pkg.price}</span>
-            </div>
-            <ul className="space-y-3">
-              {features.map((f, i) => (
-                <li key={f} className="flex items-center gap-2 text-sm">
-                  {pkg.features[i] ? (
-                    <Check className="w-4 h-4 text-wash-green shrink-0" />
-                  ) : (
-                    <X className="w-4 h-4 text-muted-foreground/25 shrink-0" />
-                  )}
-                  <span className={pkg.features[i] ? "text-foreground" : "text-muted-foreground/50"}>
-                    {f}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    {/* Desktop table */}
-    <div className="hidden md:block overflow-visible pt-10">
-      <table className="w-full text-sm border-collapse">
-        <thead>
-          <tr className="border-b-2 border-border">
-            <th className="text-left px-5 py-6 font-semibold text-muted-foreground w-[240px] text-base">Features</th>
-            {packages.map((pkg) => (
-              <th key={pkg.name} className="px-5 text-center align-bottom">
-                <div className={`relative pb-6 pt-2 ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
-                  {pkg.popular && (
-                    <div className="flex justify-center mb-4">
-                      <span className="bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
-                        MOST POPULAR
-                      </span>
-                    </div>
-                  )}
-                  {!pkg.popular && <div className="h-8" />}
-                  <div className="font-bold text-foreground text-lg">{pkg.name}</div>
-                  <div className="text-3xl font-black text-primary mt-1">{pkg.price}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{pkg.tag}</div>
+            )}
+            <div
+              className={`rounded-2xl border p-6 ${pkg.popular ? "pt-8" : ""} ${
+                pkg.popular
+                  ? "border-primary bg-primary/5 shadow-lg ring-2 ring-primary/20"
+                  : "border-border bg-card"
+              }`}
+            >
+              <div className="flex items-baseline justify-between mb-5">
+                <div>
+                  <span className="text-lg font-bold text-foreground">{pkg.name}</span>
+                  <span className="ml-2 text-sm text-muted-foreground">{pkg.tag}</span>
                 </div>
-              </th>
+                <span className="text-3xl font-black text-primary">{pkg.price}</span>
+              </div>
+              <ul className="space-y-3">
+                {features.map((f, i) => (
+                  <li key={f} className="flex items-center gap-2 text-sm">
+                    {pkg.features[i] ? (
+                      <Check className="w-4 h-4 text-wash-green shrink-0" />
+                    ) : (
+                      <X className="w-4 h-4 text-muted-foreground/25 shrink-0" />
+                    )}
+                    <span className={pkg.features[i] ? "text-foreground" : "text-muted-foreground/50"}>
+                      {f}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop table */}
+      <div className="hidden md:block overflow-visible pt-10">
+        <table className="w-full text-sm" style={{ tableLayout: "fixed" }}>
+          <colgroup>
+            <col style={{ width: "240px" }} />
+            {packages.map((pkg) => (
+              <col key={pkg.name} />
             ))}
-          </tr>
-        </thead>
-        <tbody>
-          {features.map((f, i) => (
-            <tr key={f} className={`${i % 2 === 0 ? "bg-muted/40" : "bg-background"} border-b border-border/50`}>
-              <td className="px-5 py-5 font-medium text-foreground text-[15px]">{f}</td>
-              {packages.map((pkg) => (
-                <td key={pkg.name} className={`px-5 py-5 ${pkg.popular ? accentColor : ""}`}>
-                  <FeatureIcon included={pkg.features[i]} />
-                </td>
+          </colgroup>
+          <thead>
+            <tr>
+              <th className="text-left px-5 py-6 font-semibold text-muted-foreground text-base border-b-2 border-border">
+                Features
+              </th>
+              {packages.map((pkg, idx) => (
+                <th
+                  key={pkg.name}
+                  className={`px-5 text-center align-bottom border-b-2 border-border ${
+                    idx > 0 ? "border-l border-border" : ""
+                  }`}
+                >
+                  <div className={`relative pb-6 pt-2 ${pkg.popular ? `${accentColor} rounded-t-2xl` : ""}`}>
+                    {pkg.popular && (
+                      <div className="flex justify-center mb-4">
+                        <span className="bg-primary text-primary-foreground text-[11px] font-bold px-4 py-1.5 rounded-full whitespace-nowrap shadow-md">
+                          {pkg.badgeText || "BEST"}
+                        </span>
+                      </div>
+                    )}
+                    {!pkg.popular && <div className="h-8" />}
+                    <div className="font-bold text-foreground text-lg">{pkg.name}</div>
+                    <div className="text-3xl font-black text-primary mt-1">{pkg.price}</div>
+                    <div className="text-xs text-muted-foreground mt-1">{pkg.tag}</div>
+                  </div>
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {features.map((f, i) => (
+              <tr key={f} className={`${i % 2 === 0 ? "bg-muted/40" : "bg-background"}`}>
+                <td className="px-5 py-5 font-medium text-foreground text-[15px] border-b border-border/50">
+                  {f}
+                </td>
+                {packages.map((pkg, idx) => (
+                  <td
+                    key={pkg.name}
+                    className={`px-5 py-5 border-b border-border/50 ${
+                      idx > 0 ? "border-l border-border" : ""
+                    } ${pkg.popular ? accentColor : ""}`}
+                  >
+                    <FeatureIcon included={pkg.features[i]} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const PricingSection = () => (
   <section className="section-padding bg-card" id="pricing">
