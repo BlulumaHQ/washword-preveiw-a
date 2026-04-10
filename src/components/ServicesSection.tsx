@@ -1,28 +1,17 @@
+import touchlessIcon from "@/assets/touchless_icon.jpg";
+import softClothIcon from "@/assets/soft_cloth_icon.jpg";
+import selfServeIcon from "@/assets/self_serve_bay.jpg";
+import vacuumIcon from "@/assets/vacuum.jpg";
+import fragranceIcon from "@/assets/fragrance.jpg";
+import detailingIcon from "@/assets/detailing.png";
+
 const services = [
-  {
-    title: "Touchless Automatic Wash",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/car-wash-1.png",
-  },
-  {
-    title: "Soft Cloth Automatic Wash",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/car-wash-1.png",
-  },
-  {
-    title: "Self-Serve Bays",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/car-service-1.png",
-  },
-  {
-    title: "Vacuum & Shampoo Stations",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/car-wash2-1.png",
-  },
-  {
-    title: "Fragrance Spray",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/Rectangle-99.png",
-  },
-  {
-    title: "Detailing Products",
-    img: "https://washworld.ca/wp-content/uploads/2024/06/cleanup-1.png",
-  },
+  { title: "Touchless Automatic Wash", img: touchlessIcon },
+  { title: "Soft Cloth Automatic Wash", img: softClothIcon },
+  { title: "Self-Serve Bays", img: selfServeIcon },
+  { title: "Vacuum & Shampoo Stations", img: vacuumIcon },
+  { title: "Fragrance Spray", img: fragranceIcon },
+  { title: "Detailing Products", img: detailingIcon },
 ];
 
 const ServicesSection = () => (
@@ -39,12 +28,12 @@ const ServicesSection = () => (
         {services.map((s) => (
           <div
             key={s.title}
-            className="flex flex-col items-center text-center p-6 rounded-2xl bg-card border border-border hover:shadow-md transition-all"
+            className="flex flex-col items-center text-center p-8 rounded-2xl bg-card border border-border hover:shadow-md transition-all"
           >
             <img
               src={s.img}
               alt={s.title}
-              className="w-16 h-16 object-contain mb-4"
+              className="w-16 h-16 object-contain mb-5"
             />
             <h3 className="text-sm md:text-base font-semibold text-foreground">
               {s.title}

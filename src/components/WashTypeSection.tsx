@@ -41,24 +41,6 @@ const WashTypeSection = () => (
           </div>
         </div>
       </div>
-
-      <div className="mt-8 bg-card rounded-2xl p-6 border border-border shadow-sm max-w-2xl mx-auto">
-        <h4 className="font-bold text-foreground mb-3 text-center">Not sure which to choose?</h4>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-wash-blue-light">
-            <span className="text-lg">🚗</span>
-            <p className="text-sm text-wash-navy font-medium">
-              Heavily dirty vehicle → choose <strong>Soft Cloth</strong>
-            </p>
-          </div>
-          <div className="flex items-start gap-3 p-3 rounded-lg bg-wash-blue-light">
-            <span className="text-lg">⚡</span>
-            <p className="text-sm text-wash-navy font-medium">
-              Quick clean needed → choose <strong>Touchless</strong>
-            </p>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 );

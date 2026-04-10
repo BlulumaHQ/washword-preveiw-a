@@ -15,9 +15,9 @@ const TrustSection = () => (
       </h2>
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {trust.map((t) => (
-          <div key={t.title} className="flex flex-col items-center gap-4 p-6 rounded-2xl bg-primary-foreground/5 border border-primary-foreground/10">
-            <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center">
-              <t.icon className="w-7 h-7 text-wash-blue" />
+          <div key={t.title} className="flex flex-col items-center gap-4 p-8 rounded-2xl bg-primary-foreground/10 border border-primary-foreground/15">
+            <div className="w-16 h-16 rounded-full bg-primary/25 flex items-center justify-center">
+              <t.icon className="w-8 h-8 text-wash-blue" />
             </div>
             <h3 className="text-lg font-bold text-primary-foreground">{t.title}</h3>
             <p className="text-sm text-primary-foreground/70">{t.text}</p>
