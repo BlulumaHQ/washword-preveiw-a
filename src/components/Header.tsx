@@ -11,6 +11,10 @@ const navLinks = [
   { label: "Contact", href: "/#contact" },
 ];
 
+const desktopNavLinks = navLinks.filter(
+  (link) => link.label !== "FAQ" && link.label !== "Contact",
+);
+
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -26,7 +30,7 @@ const Header = () => {
         </a>
 
         <nav className="hidden lg:flex items-center gap-6 mx-auto">
-          {navLinks.map((link) => (
+          {desktopNavLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
