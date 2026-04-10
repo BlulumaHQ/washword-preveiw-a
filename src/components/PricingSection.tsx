@@ -41,7 +41,7 @@ const softClothPackages: Package[] = [
     price: "$23",
     tag: "Premium",
     popular: true,
-    badgeText: "BEST",
+    badgeText: "MOST POPULAR",
     features: [true, true, true, true, true, true, true, true, true, true, false],
   },
   {
