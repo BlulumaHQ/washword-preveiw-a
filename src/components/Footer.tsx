@@ -83,7 +83,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="mt-8 md:mt-12 pt-6 border-t border-primary-foreground/10 text-center text-xs">
-        Copyright © 2024 Washworld. All Rights Reserved.
+        Copyright © 2024 Washworld. All Rights Reserved. | Web Design by{" "}<a href="https://sonykundesign.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">Sonykun Design</a>
       </div>
     </div>
   </footer>
