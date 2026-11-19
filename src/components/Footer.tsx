@@ -84,7 +84,7 @@ const Footer = () => (
       </div>
       <div className="mt-8 md:mt-12 pt-6 border-t border-primary-foreground/10 text-center text-xs">
         Copyright © 2024 Washworld. All Rights Reserved. | Web Design by{" "}<a href="https://sonykundesign.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-80">Sonykun Design</a>
-      </div>
+      {" "}<span className="block mt-1 opacity-80" data-concept-note>Design concept for portfolio purposes only. Not the official website of Washworld Car Wash.</span></div>
     </div>
   </footer>
 );
